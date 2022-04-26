@@ -1,0 +1,17 @@
+
+# Vim
+*.swp
+*.swo
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+.idea
+
+# colcon
+build/
+install/
+log/
+
+# Python
+*.pyc

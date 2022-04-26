@@ -1,0 +1,8 @@
+checkout:
+https://github.com/ros-drivers/usb_cam/tree/ros2 
+
+install:
+sudo apt get install ros-galactic-usb-cam*
+
+to run ros2 camera driver:
+ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ~/cam_params.yaml
