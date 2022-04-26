@@ -42,7 +42,7 @@ CameraCalibrationNode::CameraCalibrationNode(
 }
 
 void CameraCalibrationNode::topic_callback(
-    sensor_msgs::msg::Image::SharedPtr msg) const {
+    const sensor_msgs::msg::Image::SharedPtr &msg) const {
 
   // Convert ROS image message to OpenCV image.
   cv_bridge::CvImagePtr cv_ptr;
@@ -54,12 +54,12 @@ void CameraCalibrationNode::topic_callback(
   }
 
   // Correct the input image.
-  std::shared_ptr<cv::Mat> img_p(new cv::Mat());
-  cv::undistort(cv_ptr->image, *img_p, camera_matrix_, distortion_);
+  cv::Mat img_p;
+  cv::undistort(cv_ptr->image, img_p, camera_matrix_, distortion_);
 
   // Convert OpenCV image to ROS message.
   sensor_msgs::msg::Image::SharedPtr msg_to_pub =
-      cv_bridge::CvImage(msg->header, "bgr8", *img_p).toImageMsg();
+      cv_bridge::CvImage(msg->header, "bgr8", img_p).toImageMsg();
 
   // Publish ros image message.
   calibrated_image_publisher_->publish(*msg_to_pub);

@@ -36,7 +36,7 @@ private:
   rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr calibrated_image_publisher_;
 
   // Callbacks
-  void topic_callback(sensor_msgs::msg::Image::SharedPtr msg) const;
+  void topic_callback(const sensor_msgs::msg::Image::SharedPtr &msg) const;
 
 };
 
